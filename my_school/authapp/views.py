@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import FormView
@@ -14,6 +15,12 @@ class SchoolUserCreateView(FormView):
 
     def form_valid(self, form):
         form.save()
+
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        new_user = authenticate(username=username, password=password)
+        login(self.request, new_user)
+
         return super().form_valid(form)
 
 
