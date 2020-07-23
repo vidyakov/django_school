@@ -131,3 +131,7 @@ AUTH_USER_MODEL = 'authapp.SchoolUser'
 
 # Tests
 TEST_RUNNER = 'config.runner.PytestTestRunner'
+
+
+# Authapp
+LOGIN_REDIRECT_URL = '/'

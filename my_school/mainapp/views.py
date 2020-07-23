@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 
-from mainapp.models import Course
+from .models import Course
 
 
 class AllCoursesListView(ListView):
