@@ -20,6 +20,6 @@
             </div>
             <p class="course-descr">{{ object.description }}</p>
         </div>
-        <a href="#" class="start btn btnPrimary">Начать учиться!</a>
+        <a href="{% url 'course:page' object.pk %}" class="start btn btnPrimary">Начать учиться!</a>
     </section>
 {% endblock content %}

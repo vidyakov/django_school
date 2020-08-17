@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
+    'courseapp.apps.CourseappConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,11 +130,34 @@ STATICFILES_DIRS = [
 ]
 
 # User model
+
 AUTH_USER_MODEL = 'authapp.SchoolUser'
 
+
 # Tests
+
 TEST_RUNNER = 'config.runner.PytestTestRunner'
 
 
 # Authapp
+
 LOGIN_REDIRECT_URL = '/'
+
+
+# Email
+
+ADMINISTRATORS_EMAILS = 'admin@gmail.com'
+
+DOMAIN_NAME = 'http://localhost:8000'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'django@geekshop.local'
+EMAIL_HOST_PASSWORD = 'geekshop'
+EMAIL_USE_SSL = False
+
+# Logging email
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'
+

@@ -1,6 +1,7 @@
 from django.core.management import BaseCommand
 import factory
 
+from courseapp.models import InteractiveLesson
 from mainapp.models import Tag, Author, Course
 
 
@@ -35,6 +36,14 @@ class CourseFactory(factory.DjangoModelFactory):
     tag = factory.SelfAttribute('author.tag')
 
 
+class InteractiveLessonFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = InteractiveLesson
+
+    materials = factory.Faker('paragraph')
+    course = factory.SubFactory(CourseFactory)
+
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        CourseFactory.create_batch(10)
+        InteractiveLessonFactory.create_batch(10)

@@ -20,6 +20,7 @@
                     <input type="text" placeholder="Что вы хотите выучить?">
                     <img src="{% static '/img/search-outline.svg' %}" alt="">
                 </div>
+                <a href="{% url 'main:contact' %}" class="btn">Контакты</a>
                 {% if user.is_authenticated %}
                 <a href="{% url 'auth:logout' %}" class="btn">Выйти</a>
                 {% else %}

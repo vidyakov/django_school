@@ -21,7 +21,7 @@ class Tag(AbstractModel):
     )
 
 
-class Author(models.Model):
+class Author(AbstractModel):
     first_name = models.CharField(
         max_length=512,
         blank=True,
@@ -44,7 +44,6 @@ class Author(models.Model):
 
 
 class Course(AbstractModel):
-
     class Levels(models.TextChoices):
         EASY = 'e'
         NORMAL = 'n'
