@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView, FormView
 
+from django_rq import enqueue
+
 from .forms import ContactForm
 from .models import Course
 
@@ -25,7 +27,6 @@ class ContactFormView(FormView):
         user_message = form.cleaned_data.get('message')
         user_email = form.cleaned_data.get('email')
 
-        send_mail(user_name, user_message, settings.EMAIL_HOST_USER, [settings.ADMINISTRATORS_EMAILS])
-        send_mail(user_name, user_message, settings.EMAIL_HOST_USER, [user_email])
-
+        enqueue(send_mail, user_name, user_message, settings.EMAIL_HOST_USER, [settings.ADMINISTRATORS_EMAILS])
+        enqueue(send_mail, user_name, user_message, settings.EMAIL_HOST_USER, [user_email])
         return super().form_valid(form)

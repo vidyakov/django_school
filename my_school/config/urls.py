@@ -23,4 +23,6 @@ urlpatterns = [
     path('course/<int:pk>/', include('courseapp.urls', namespace='course')),
 
     path('admin/', admin.site.urls),
+
+    path('django-rq/', include('django_rq.urls'))
 ]
