@@ -1,11 +1,11 @@
 from django.urls import path
 
-from .views import CoursePageView
+from .views import LessonPageView
 
 
 app_name = 'courseapp'
 
 urlpatterns = [
-    path('', CoursePageView.as_view(), name='page'),
+    path('<int:pk>/', LessonPageView.as_view(), name='page'),
 ]
 

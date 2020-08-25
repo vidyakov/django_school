@@ -20,6 +20,14 @@
             </div>
             <p class="course-descr">{{ object.description }}</p>
         </div>
-        <a href="{% url 'course:page' object.pk %}" class="start btn btnPrimary">Начать учиться!</a>
+        <a href="{% url 'lesson:page' object.pk %}" class="start btn btnPrimary">Начать учиться!</a>
     </section>
+{#    Не работает вывад уроков#}
+{#section    <section class="course-lessons">#}
+{#        <div class="course-lesson">#}
+{#            {% for lessson in object.interactivelesson_set.all %}#}
+{#            <a href="">{{ lesson.name }}</a>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </section>#}
 {% endblock content %}

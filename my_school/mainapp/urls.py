@@ -6,6 +6,6 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', AllCoursesListView.as_view(), name='index'),
-    path('course_info/<int:pk>/', CourseDetailView.as_view(), name='course_info'),
+    path('course/<int:pk>/', CourseDetailView.as_view(), name='course'),
     path('contact/', ContactFormView.as_view(), name='contact')
 ]

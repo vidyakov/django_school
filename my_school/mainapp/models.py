@@ -1,74 +1,30 @@
 from django.db import models
 
 
-class AbstractModel(models.Model):
-    class Meta:
-        abstract = True
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
 
     def __str__(self):
-        properties = [f'{k}={v}' for k, v in self.__dict__.items() if not k.startswith('_')]
-        return f'{self.__class__.__name__}({", ".join(properties)})'
+        return self.name
 
     def __repr__(self):
-        return str(self)
+        return f'{__class__.__name__}({self.name})'
 
 
-class Tag(AbstractModel):
-    name = models.CharField(
-        max_length=255,
-        blank=True,
-        verbose_name='Название'
-    )
+class Course(models.Model):
 
-
-class Author(AbstractModel):
-    first_name = models.CharField(
-        max_length=512,
-        blank=True,
-        verbose_name='name'
-    )
-    second_name = models.CharField(
-        max_length=512,
-        blank=True,
-        verbose_name='second name'
-    )
-    description = models.TextField(
-        blank=True,
-        verbose_name='description'
-    )
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-
-    @property
-    def full_name(self):
-        return f'{self.first_name} {self.second_name}'
-
-
-class Course(AbstractModel):
     class Levels(models.TextChoices):
-        EASY = 'e'
-        NORMAL = 'n'
-        HARD = 'h'
+        EASY = 1
+        NORMAL = 2
+        HARD = 3
 
     name = models.CharField(
         max_length=512,
-        blank=True,
-        verbose_name='название',
         unique=True
     )
-    description = models.TextField(
-        blank=True,
-        verbose_name='описание'
-    )
-    img = models.CharField(
-        max_length=32,
-        blank=True,
-        verbose_name="фото",
-    )
-    price = models.IntegerField(
-        null=False,
-        verbose_name='цена',
-        default=999
-    )
+    description = models.TextField()
+    img = models.ImageField(upload_to='courses/photo/')
+    price = models.IntegerField()
     level = models.CharField(
         max_length=1,
         choices=Levels.choices,
@@ -76,7 +32,15 @@ class Course(AbstractModel):
     )
     date = models.DateField(
         auto_created=True,
-        verbose_name='дата создания'
+        verbose_name='date of creation'
     )
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+
+    authors = models.ManyToManyField('authapp.SchoolUser', related_name='authors')
+    students = models.ManyToManyField('authapp.SchoolUser', related_name='students', blank=True)
+    tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    def __repr__(self):
+        return f'{__class__.__name__}({self.name}, )'

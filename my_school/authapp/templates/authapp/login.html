@@ -5,9 +5,14 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Login">
-    </form>
+    <section class="login-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Login">
+        </form>
+    </section>
+    <section class="oauth">
+        <div class="vk">VK</div>
+    </section>
 {% endblock content %}
