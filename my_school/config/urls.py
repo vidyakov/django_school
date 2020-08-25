@@ -18,6 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from graphene_django.views import GraphQLView
+
+from .schema import schema
+
 
 urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),
@@ -26,7 +30,8 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('django-rq/', include('django_rq.urls'))
+    path('django-rq/', include('django_rq.urls')),
+    path('graphql/', GraphQLView.as_view(graphiql=True, schema=schema))
 ]
 
 
