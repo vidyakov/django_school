@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
     'courseapp.apps.CourseappConfig',
+
+    'main_app.apps.MainAppConfig'
 ]
 
 MIDDLEWARE = [
@@ -190,3 +192,12 @@ EMAIL_USE_SSL = False
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
 EMAIL_FILE_PATH = 'tmp/email-messages/'
+
+
+# DRF
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}

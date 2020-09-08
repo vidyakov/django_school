@@ -10,24 +10,17 @@
 {% endblock css %}
 
 {% block content %}
-    <section class="course-page">
-        <div class="course-info">
-            <h1 class="course-title">{{ object.name }}</h1>
-            <span class="for-author">Курс разработан:</span>
-            <div class="author-info">
-                <img src="{% static '/img/person-circle-outline.svg' %}" alt="" class="author-avatar">
-                <h2 class="author-name">{{ object.author }}</h2>
-            </div>
-            <p class="course-descr">{{ object.description }}</p>
+    <section class="course-info">
+        <h1 class="course-title">{{ object.name }}</h1>
+        <span class="for-author">Курс разработан:</span>
+        <div class="author-info">
+            <img src="{% static '/img/person-circle-outline.svg' %}" alt="" class="author-avatar">
+            <h2 class="author-name">{{ object.author }}</h2>
         </div>
+        <p class="course-descr">{{ object.description }}</p>
         <a href="{% url 'lesson:page' object.pk %}" class="start btn btnPrimary">Начать учиться!</a>
     </section>
-{#    Не работает вывад уроков#}
-{#section    <section class="course-lessons">#}
-{#        <div class="course-lesson">#}
-{#            {% for lessson in object.interactivelesson_set.all %}#}
-{#            <a href="">{{ lesson.name }}</a>#}
-{#            {% endfor %}#}
-{#        </div>#}
-{#    </section>#}
+    <section class="course-lessons">
+        <h2>Lessons:</h2>
+    </section>
 {% endblock content %}

@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from graphene_django.views import GraphQLView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from .schema import schema
 
@@ -27,11 +28,15 @@ urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('lesson/', include('courseapp.urls', namespace='lesson')),
+    path('test_webpack/', include('main_app.urls', namespace='webpack')),
 
     path('admin/', admin.site.urls),
 
     path('django-rq/', include('django_rq.urls')),
-    path('graphql/', GraphQLView.as_view(graphiql=True, schema=schema))
+    path('graphql/', GraphQLView.as_view(graphiql=True, schema=schema)),
+
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 

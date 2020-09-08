@@ -16,8 +16,12 @@ class AdditionalMaterial(models.Model):
 class LessonInfo(models.Model):
     name = models.CharField(blank=True, max_length=256)
 
-    course = models.ForeignKey('mainapp.Course', on_delete=models.CASCADE)
-    materials = models.ManyToManyField(AdditionalMaterial)
+    course = models.ForeignKey(
+        'mainapp.Course',
+        on_delete=models.CASCADE,
+        related_name='lessons'
+    )
+    materials = models.ManyToManyField(AdditionalMaterial, blank=True)
 
     def __str__(self):
         return self.name
@@ -33,7 +37,11 @@ class InteractiveLesson(models.Model):
     second_limit = models.PositiveSmallIntegerField(null=True)
     error_limit = models.PositiveIntegerField(null=True)
 
-    lesson_info = models.OneToOneField(LessonInfo, on_delete=models.CASCADE)
+    lesson_info = models.OneToOneField(
+        LessonInfo,
+        on_delete=models.CASCADE,
+        related_name='inter_lesson'
+    )
 
     def __str__(self):
         return f'{self.typing_text[:10]} ...'

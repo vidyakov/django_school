@@ -1,13 +1,23 @@
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.generics import get_object_or_404
+from rest_framework.viewsets import ModelViewSet
 
-from .models import InteractiveLesson
-from .serializers import InteractiveLessonSerializer
+from .models import AdditionalMaterial, LessonInfo, InteractiveLesson
+from .serializers import (
+    AdditionalMaterialSerializer,
+    LessonInfoSerializer,
+    InteractiveLessonSerializer,
+)
 
 
-class LessonPageView(APIView):
-    def get(self, request, pk):
-        lesson = get_object_or_404(InteractiveLesson, pk=pk)
-        lesson_serializer = InteractiveLessonSerializer(lesson)
-        return Response(lesson_serializer.data)
+# class AdditionalMaterialViewSet(ModelViewSet):
+#     queryset = AdditionalMaterial.objects.all()
+#     serializer_class = AdditionalMaterialSerializer
+#
+#
+class LessonInfoViewSet(ModelViewSet):
+    queryset = LessonInfo.objects.all()
+    serializer_class = LessonInfoSerializer
+
+#
+# class InteractiveLessonViewSet(ModelViewSet):
+#     queryset = InteractiveLesson.objects.all()
+#     serializer_class = InteractiveLessonSerializer

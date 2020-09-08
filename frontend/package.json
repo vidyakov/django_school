@@ -1,5 +1,5 @@
 {
-  "name": "frontend_my_school",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6"
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5"
   }
 }

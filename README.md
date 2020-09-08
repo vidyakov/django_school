@@ -9,3 +9,11 @@
 5. docker run -p 0.0.0.0:6379:6379 redis (Запуск redis)
 6. python manage.py rqworker default (Запуск rq)
 7. python manage.py runserver
+
+
+## JWT 
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"username": "admin", "password": "admin"}' \
+    http://localhost:8000/api/token/
