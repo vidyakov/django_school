@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
     'courseapp.apps.CourseappConfig',
-
-    'main_app.apps.MainAppConfig'
+    'api_app.apps.ApiAppConfig',
+    'main_app.apps.MainAppConfig',
 ]
 
 MIDDLEWARE = [

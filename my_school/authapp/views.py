@@ -1,10 +1,14 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 
 from .forms import SchoolUserCreationForm
 from .models import SchoolUser
+
+
+class AuthChoice(TemplateView):
+    template_name = 'authapp/auth_choice.html'
 
 
 class SchoolUserCreateView(FormView):

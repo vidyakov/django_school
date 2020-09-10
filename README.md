@@ -16,4 +16,4 @@ curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"username": "admin", "password": "admin"}' \
-    http://localhost:8000/api/token/
+    http://127.0.0.1:8000/api/token/

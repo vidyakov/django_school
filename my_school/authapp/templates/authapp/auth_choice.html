@@ -1,0 +1,13 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+
+{% block title %}Choice your auth{% endblock title %}
+
+{% block content %}
+    <section class="auth-choice">
+        <a href="{% url 'auth:session-auth' %}" class="btn">Session auth</a>
+        <a href="{% url 'api:token_obtain_pair' %}" class="btn">Token</a>
+        <a href="" class="btn">Oauth</a>
+    </section>
+{% endblock content %}

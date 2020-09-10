@@ -3,12 +3,9 @@ from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView, FormView
 from django_rq import enqueue
-from rest_framework.generics import ListAPIView
 
-from authapp.models import SchoolUser
 from .forms import ContactForm
 from .models import Course
-from .serializers import CourseSerializer, SchoolUserSerializer
 
 
 class AllCoursesListView(ListView):
@@ -32,13 +29,3 @@ class ContactFormView(FormView):
         enqueue(send_mail, user_name, user_message, settings.EMAIL_HOST_USER, [settings.ADMINISTRATORS_EMAILS])
         enqueue(send_mail, user_name, user_message, settings.EMAIL_HOST_USER, [user_email])
         return super().form_valid(form)
-
-
-class Courses(ListAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-
-
-class Students(ListAPIView):
-    queryset = SchoolUser.objects.all()
-    serializer_class = SchoolUserSerializer
